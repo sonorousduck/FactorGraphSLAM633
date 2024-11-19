@@ -11,9 +11,9 @@ FROM ros:${ROS_DISTRO}-ros-core
 # ENV NVIDIA_DRIVER_CAPABILITIES \
 #     ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
 
-ENV MAIN_WS "/docker_SLAM"
-ENV ROS_WS "${MAIN_WS}/ros2_ws"
-ENV DRIVER_WS "${MAIN_WS}/drivers_ros2_ws"
+ENV MAIN_WS /docker_SLAM
+ENV ROS_WS ${MAIN_WS}/ros2_ws
+ENV DRIVER_WS ${MAIN_WS}/drivers_ros2_ws
 
 # install bootstrap tools
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -78,13 +78,15 @@ RUN apt-get update && apt-get install ros-${ROS_DISTRO}-gtsam cmake vim tmux -y 
 #   colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release && \
 #   echo "source /docker_yride/other_drivers_ros2_ws/install/setup.bash" >> ~/.bashrc
 
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
+
 # Install LIO-SAM
 RUN apt-get update && sudo apt install ros-${ROS_DISTRO}-perception-pcl \
     ros-${ROS_DISTRO}-pcl-msgs \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-xacro -y
-RUN mkdir -p /docker/drivers_ros2_ws/src && \
-    cd /docker/drivers_ros2_ws/src && \
+RUN mkdir -p ${DRIVER_WS}/src && \
+    cd ${DRIVER_WS}/src && \
     git clone -b ros2 --recurse-submodules https://github.com/ouster-lidar/ouster-ros.git && \
     # cd ouster-ros && git fetch --all --tags && git checkout tags/ros2-v0.13.1 && cd .. && \
     # git clone https://github.com/TixiaoShan/LIO-SAM.git && \
@@ -131,7 +133,8 @@ RUN groupadd -g $GID $UNAME && \
 
 # Run container as the newly created user
 USER $UNAME
+WORKDIR ${ROS_WS}
 
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc && \
-    echo "source ${DRIVER_WS}/install/setup.bash" >> ~/.bashrc && \
+    echo "source ${DRIVER_WS}/install/setup.bash" >> ~/.bashrc
     # echo "source /ws_livox/install/setup.bash" >> ~/.bashrc

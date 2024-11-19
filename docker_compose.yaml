@@ -13,7 +13,7 @@ services:
     user: "${UID}:${GID}"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix # Needed to display RViz within the container
-      - ${HOME}/FactorGraphSlam:/docker/ros2_ws:rw
+      - ${HOME}/FactorGraphSLAM633/ros_ws:/docker_SLAM/ros2_ws:rw
     environment:
       DISPLAY: ${DISPLAY} # Needed to display RViz within the container
       # set up sensor hostname IPv4 addresses
