@@ -128,12 +128,12 @@ ARG GID
 ARG UNAME
 
 # Create group and user with provided UID and GID
-RUN groupadd -g $GID $UNAME && \
-    useradd -m -u $UID -g $GID -s /bin/bash $UNAME
+#RUN groupadd -g $GID $UNAME && \
+#    useradd -m -u $UID -g $GID -s /bin/bash $UNAME
 
 # Run container as the newly created user
-USER $UNAME
-WORKDIR ${ROS_WS}
+#USER $UNAME
+#WORKDIR ${ROS_WS}
 
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc && \
     echo "source ${DRIVER_WS}/install/setup.bash" >> ~/.bashrc
