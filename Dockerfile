@@ -84,7 +84,8 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 RUN apt-get update && sudo apt install ros-${ROS_DISTRO}-perception-pcl \
     ros-${ROS_DISTRO}-pcl-msgs \
     ros-${ROS_DISTRO}-vision-opencv \
-    ros-${ROS_DISTRO}-xacro -y
+    ros-${ROS_DISTRO}-xacro -y \
+    ros-${ROS_DISTRO}-spatio-temporal-voxel-layer
 RUN mkdir -p ${DRIVER_WS}/src && \
     cd ${DRIVER_WS}/src && \
     git clone -b ros2 --recurse-submodules https://github.com/ouster-lidar/ouster-ros.git && \

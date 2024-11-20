@@ -1,8 +1,15 @@
+# Running the voxel map graphing and the scan matching
+
+`colcon build --symlink-install` while in the ros_ws folder. Then run `source /install/setup.bash`. Last, run `ros2 launch scan_matching octomap_mapping.launch.py`
+
+
 
 
 # Running spatio_temporal_voxel_layer
 
 ## Building Spatio Temporal Voxel Layer
+
+(I added all of this into the docker container now instead)
 
 Run `sudo apt install ros-humble-spatio-temporal-voxel-layer`. It is way faster than compiling from the Github (that took me 35 min to build)
 
