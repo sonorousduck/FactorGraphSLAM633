@@ -89,7 +89,8 @@ RUN apt-get update && sudo apt install ros-${ROS_DISTRO}-perception-pcl \
     ros-${ROS_DISTRO}-pcl-conversions \
     ros-${ROS_DISTRO}-vision-opencv \
     ros-${ROS_DISTRO}-xacro -y \
-    ros-${ROS_DISTRO}-spatio-temporal-voxel-layer
+    ros-${ROS_DISTRO}-spatio-temporal-voxel-layer \
+    ros-${ROS_DISTRO}-octomap-server 
 
 RUN mkdir -p ${DRIVER_WS}/src && \
     cd ${DRIVER_WS}/src && \
