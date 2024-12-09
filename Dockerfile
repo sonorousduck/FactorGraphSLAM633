@@ -133,22 +133,24 @@ RUN apt-get update && apt-get install ros-${ROS_DISTRO}-microstrain-inertial-dri
 # ARG UID 
 # ARG GID
 # ARG UNAME
-# # ARG PASSWORD  # Add an argument for the user's password
+# ARG PASSWORD  # Add an argument for the user's password
 
-# # Install sudo and other necessary tools
-# RUN apt-get update && apt-get install -y sudo
+# Install sudo and other necessary tools
+RUN apt-get update && apt-get install -y sudo
 
-# # Create group and user with provided UID and GID
-# RUN groupadd -g $GID $UNAME && \
-#     useradd -m -u $UID -g $GID -s /bin/bash $UNAME && \
-#     usermod -aG sudo $UNAME && \
-#     echo "$UNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-#     # echo "$UNAME:$PASSWORD" | chpasswd
+# Create group and user with provided UID and GID
+RUN groupadd -g $GID $UNAME && \
+    useradd -m -u $UID -g $GID -s /bin/bash $UNAME && \
+    usermod -aG sudo $UNAME && \
+    echo "$UNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+    # echo "$UNAME:$PASSWORD" | chpasswd
 
-# # Set up the workspace and switch to the new user
-# USER $UNAME
+# Set up the workspace and switch to the new user
+USER $UNAME
 WORKDIR ${ROS_WS}
 
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc && \
-    echo "source ${DRIVER_WS}/install/setup.bash" >> ~/.bashrc
+    echo "source ${DRIVER_WS}/install/setup.bash" >> ~/.bashrc && \
+    echo "source ${ROS_WS}/install/setup.bash" >> ~/.bashrc
+
     # echo "source /ws_livox/install/setup.bash" >> ~/.bashrc
