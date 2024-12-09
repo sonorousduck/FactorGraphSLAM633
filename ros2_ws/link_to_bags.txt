@@ -1,0 +1,3 @@
+The ros2 bags I've collected are too big to upload to Github.
+Thus, I've uploaded them to Box at this link:
+https://byu.box.com/s/g9jdv4wpu33hmaub0ppyu9kdmaqbu1ox

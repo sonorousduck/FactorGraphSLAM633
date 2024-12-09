@@ -25,13 +25,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     python3-vcstool \
     && rm -rf /var/lib/apt/lists/*
 
-# install nano and pip
+# install nano and pip and other things
 RUN apt-get update && apt-get install -y nano \
     python3-pip \
+    python3-matplotlib \
+    x11-apps \
+    qt5-default \
     && pip3 install --upgrade pip
 
 # Install Segmentation Libraries
-RUN python3 -m pip install numpy matplotlib opencv-python open3d ouster-sdk 
+RUN python3 -m pip install numpy opencv-python open3d ouster-sdk gtsam
 # RUN python3 -m pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113 
 # RUN python3 -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
 # RUN git clone https://github.com/bytedance/kmax-deeplab.git && cd kmax-deeplab && python3 -m pip install -r requirements.txt
@@ -109,7 +112,7 @@ RUN cd ${DRIVER_WS}/src/ouster-ros/ouster-ros/config/ && \
 
 
 # Install ros2 IMU + LUCID Camera + Velodyne
-RUN apt-get update && apt-get install ros-${ROS_DISTRO}-microstrain-inertial-driver ros-${ROS_DISTRO}-microstrain-inertial-rqt -y
+RUN apt-get update && apt-get install ros-${ROS_DISTRO}-microstrain-inertial-driver ros-${ROS_DISTRO}-octomap-server ros-${ROS_DISTRO}-microstrain-inertial-rqt -y
 
 # RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
 #   && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
@@ -129,8 +132,8 @@ ARG GID
 ARG UNAME
 
 # Create group and user with provided UID and GID
-RUN groupadd -g $GID $UNAME && \
-   useradd -m -u $UID -g $GID -s /bin/bash $UNAME
+# RUN groupadd -g $GID $UNAME && \
+#    useradd -m -u $UID -g $GID -s /bin/bash $UNAME
 
 # Run container as the newly created user
 USER $UNAME

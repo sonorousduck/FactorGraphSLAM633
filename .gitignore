@@ -162,6 +162,7 @@ cython_debug/
 #.idea/
 
 
-ros_ws/rosbags/*
-ros_ws/install/
-ros_ws/log/
+ros2_ws/rosbags/*
+ros2_ws/install/
+ros2_ws/log/
+ros2_ws/lio_test_3_0.db3
