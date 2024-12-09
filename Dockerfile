@@ -139,14 +139,14 @@ RUN apt-get update && apt-get install ros-${ROS_DISTRO}-microstrain-inertial-dri
 RUN apt-get update && apt-get install -y sudo
 
 # Create group and user with provided UID and GID
-RUN groupadd -g $GID $UNAME && \
-    useradd -m -u $UID -g $GID -s /bin/bash $UNAME && \
-    usermod -aG sudo $UNAME && \
-    echo "$UNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+# RUN groupadd -g $GID $UNAME && \
+    # useradd -m -u $UID -g $GID -s /bin/bash $UNAME && \
+    # usermod -aG sudo $UNAME && \
+    # echo "$UNAME ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
     # echo "$UNAME:$PASSWORD" | chpasswd
 
 # Set up the workspace and switch to the new user
-USER $UNAME
+# USER $UNAME
 WORKDIR ${ROS_WS}
 
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc && \
