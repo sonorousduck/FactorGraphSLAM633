@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y nano \
     python3-pip \
     python3-matplotlib \
     x11-apps \
-    qt5-default \
+    qtbase5-dev \
     && pip3 install --upgrade pip
 
 # Install Segmentation Libraries

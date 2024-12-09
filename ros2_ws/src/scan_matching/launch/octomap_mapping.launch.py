@@ -32,6 +32,12 @@ def generate_launch_description():
                     'init_pose_from_topic' : '',
                     'freq' : 20.0}],
             ),
+
+        Node(
+            package='gtsam_graph',
+            executable='factorgraph',
+            name='factorgraph_node'
+        ),
         
         
     ])
