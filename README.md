@@ -89,3 +89,14 @@ Then play the bag file for all 5 LiDARs (Named *all_lidars_test1*. Downloadable 
 ```
 ros2 bag play <path_to_bag>
 ```
+
+# Running Image PUblisher Node
+
+Build same as all other ros2 packages and source the install/setup.bash.
+
+Place any images you need in the `ros_ws/src/image_publisher/images` directory. 
+
+Run the node using the following with the name of the image as the name in the `images` directory:
+```
+ros2 launch image_publisher image_publisher_launch.py image_name:=<Image_Name.png>
+```
