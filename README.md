@@ -90,7 +90,7 @@ Then play the bag file for all 5 LiDARs (Named *all_lidars_test1*. Downloadable 
 ros2 bag play <path_to_bag>
 ```
 
-# Running Image PUblisher Node
+# Running Image Publisher Node
 
 Build same as all other ros2 packages and source the install/setup.bash.
 
