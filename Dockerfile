@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y nano \
     && pip3 install --upgrade pip
 
 # Install Segmentation Libraries
-RUN python3 -m pip install numpy matplotlib opencv-python open3d ouster-sdk 
+RUN python3 -m pip install numpy matplotlib opencv-python open3d ouster-sdk gtsam
 # RUN python3 -m pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 --extra-index-url https://download.pytorch.org/whl/cu113 
 # RUN python3 -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
 # RUN git clone https://github.com/bytedance/kmax-deeplab.git && cd kmax-deeplab && python3 -m pip install -r requirements.txt

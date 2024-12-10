@@ -28,6 +28,12 @@ def generate_launch_description():
                 ('cloud_in', '/kiss/frame')
             ]
         ),
+
+        # Node(
+        #     package='gtsam_graph',
+        #     executable='factorgraph',
+        #     name='factorgraph_node',
+        # ),
         
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(odometry_launch_file),
