@@ -73,6 +73,7 @@ using utils::PointCloud2ToEigen;
 
 OdometryServer::OdometryServer(const rclcpp::NodeOptions &options)
     : rclcpp::Node("kiss_icp_node", options) {
+    my_namespace_ = declare_parameter<std::string>("my_namespace", my_namespace_);
     base_frame_ = declare_parameter<std::string>("base_frame", base_frame_);
     lidar_odom_frame_ = declare_parameter<std::string>("lidar_odom_frame", lidar_odom_frame_);
     publish_odom_tf_ = declare_parameter<bool>("publish_odom_tf", publish_odom_tf_);
@@ -112,12 +113,12 @@ OdometryServer::OdometryServer(const rclcpp::NodeOptions &options)
 
     // Initialize publishers
     rclcpp::QoS qos((rclcpp::SystemDefaultsQoS().keep_last(1).durability_volatile()));
-    odom_publisher_ = create_publisher<nav_msgs::msg::Odometry>("/kiss/odometry", qos);
+    odom_publisher_ = create_publisher<nav_msgs::msg::Odometry>(my_namespace_+"/odometry", qos);
     if (publish_debug_clouds_) {
-        frame_publisher_ = create_publisher<sensor_msgs::msg::PointCloud2>("/kiss/frame", qos);
+        frame_publisher_ = create_publisher<sensor_msgs::msg::PointCloud2>(my_namespace_+"/frame", qos);
         kpoints_publisher_ =
-            create_publisher<sensor_msgs::msg::PointCloud2>("/kiss/keypoints", qos);
-        map_publisher_ = create_publisher<sensor_msgs::msg::PointCloud2>("/kiss/local_map", qos);
+            create_publisher<sensor_msgs::msg::PointCloud2>(my_namespace_+"/keypoints", qos);
+        map_publisher_ = create_publisher<sensor_msgs::msg::PointCloud2>(my_namespace_+"/local_map", qos);
     }
 
     // Initialize the transform broadcaster

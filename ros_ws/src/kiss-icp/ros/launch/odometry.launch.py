@@ -64,7 +64,7 @@ def generate_launch_description():
 
     # ROS configuration
     pointcloud_topic = LaunchConfiguration("topic")
-    visualize = LaunchConfiguration("visualize", default="true")
+    visualize = LaunchConfiguration("visualize", default="false")
 
     # Optional ros bag play
     bagfile = LaunchConfiguration("bagfile", default="")
@@ -74,12 +74,15 @@ def generate_launch_description():
     lidar_odom_frame = LaunchConfiguration("lidar_odom_frame", default="odom_lidar")
     publish_odom_tf = LaunchConfiguration("publish_odom_tf", default=True)
     invert_odom_tf = LaunchConfiguration("invert_odom_tf", default=True)
+    my_namespace_ = LaunchConfiguration("my_namespace", default="/kiss_mine")
+    # kiss_ns = LaunchConfiguration("kiss_ns", default="lidar")
 
     # KISS-ICP node
     kiss_icp_node = Node(
         package="kiss_icp",
         executable="kiss_icp_node",
         name="kiss_icp_node",
+        # namespace=kiss_ns,
         output="screen",
         remappings=[
             ("pointcloud_topic", pointcloud_topic),
@@ -91,6 +94,7 @@ def generate_launch_description():
                 "lidar_odom_frame": lidar_odom_frame,
                 "publish_odom_tf": publish_odom_tf,
                 "invert_odom_tf": invert_odom_tf,
+                "my_namespace": my_namespace_,
                 # KISS-ICP configuration
                 "max_range": config.max_range,
                 "min_range": config.min_range,

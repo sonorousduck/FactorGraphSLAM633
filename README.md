@@ -3,7 +3,7 @@ Run the following commands
 ```
 colcon build --symlink-install
 source install/setup.bash
-ros2 launch scan_matching_kiss.launch.py
+ros2 launch scan_matching scan_matching_kiss.launch.py
 ```
 
 This should now also launch an rviz window for you as well, for your convenience! 

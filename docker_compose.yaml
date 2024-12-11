@@ -2,18 +2,18 @@ services:
   # Y-ride ROS2 workspace
   FactorGraphSLAM:
     build:
-      context: ${HOME}/repos/FactorGraphSLAM633 # TODO: Set context
+      context: ${HOME}/FactorGraphSLAM633 # TODO: Set context
       dockerfile: Dockerfile
       args: # These arguments help set the owner of the container files to the host user
         # UID: "${UID:-$(id -u)}"
         # GID: "${GID:-$(id -g)}"
         UNAME: "docker" # User name of container user
-    image: factor_graph_slam_img
-    container_name: factor_graph_slam
+    image: factor_graph_slam_img_update_to_icp
+    container_name: factor_graph_slam_update_to_icp
     # user: "${UID}:${GID}"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix # Needed to display RViz within the container
-      - ${HOME}/repos/FactorGraphSLAM633/ros_ws:/docker_SLAM/ros2_ws:rw
+      - ${HOME}/FactorGraphSLAM633/ros_ws:/docker_SLAM/ros2_ws:rw
     environment:
       DISPLAY: ${DISPLAY} # Needed to display RViz within the container
       # set up sensor hostname IPv4 addresses

@@ -80,6 +80,8 @@ private:
     /// Global/map coordinate frame.
     std::string lidar_odom_frame_{"odom_lidar"};
     std::string base_frame_{};
+    std::string my_namespace_{"/kiss"};
+// std::string publish_topic_{"/kiss/odometry"};
 
     /// Covariance diagonal
     double position_covariance_;
