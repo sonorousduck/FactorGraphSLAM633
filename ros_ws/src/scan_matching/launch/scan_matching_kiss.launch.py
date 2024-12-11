@@ -32,11 +32,11 @@ def generate_launch_description():
             ]
         ),
 
-        # Node(
-        #     package='gtsam_graph',
-        #     executable='factorgraph',
-        #     name='factorgraph_node',
-        # ),
+        Node(
+            package='gtsam_graph',
+            executable='factorgraph',
+            name='factorgraph_node',
+        ),
 
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(lidar_transform_launch_file),
